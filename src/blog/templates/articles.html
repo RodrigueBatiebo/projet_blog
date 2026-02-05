@@ -1,0 +1,111 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rodrigue.blog</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+  <style>
+   
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark opacity-75">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center fs-4" href="#">
+        <img src="{% static 'images/rodrigue.jpg' %}" alt="Photo Rodrigue">
+        <span>Rodrigue BATIEBO</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav fs-3">
+          <li class="nav-item"><a class="nav-link active" href="{% url 'home' %}">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link " href="{% url "articles" %}">Articles</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">À propos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contacte</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ 
+
+  <!--tous les Articles  -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="mb-4">Tous les articles</h2>
+    <hr class="border border-dark border-2 w-75 mx-auto">
+
+   <!-- Barre de recherche + filtres -->
+<div class="container my-4">
+  <!-- Barre de recherche -->
+  <form method="GET" action="{% url 'articles' %}">
+    <div class="input-group mb-3 w-75 mx-auto">
+      <input type="text" class="form-control" placeholder="Rechercher un article..." name="q" value="{{ request.GET.q }}">
+      <button class="btn btn-outline-secondary" type="submit">
+        <i class="fas fa-search"></i>
+      </button>
+    </div>
+  </form>
+
+  <!-- Tags de filtre -->
+  <div class="filter-tags text-center mb-4">
+  <a href="{% url 'articles' %}" class="btn {% if not request.GET.category %}active{% endif %}">All Articles</a>
+  <a href="?category=reseaux" class="btn {% if request.GET.category == 'reseaux' %}active{% endif %}">Réseaux informatique</a>
+  <a href="?category=cuniculture" class="btn {% if request.GET.category == 'cuniculture' %}active{% endif %}">Cuniculture</a>
+</div>
+
+
+
+    <div class="row mt-5">
+      {% for article in art %}
+      <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm article-card">
+          {% if article.photo %}
+            <img src="{{ article.photo.url }}" class="card-img-top" alt="Image article">
+          {% else %}
+            <img src="{% static 'images/defaut.jpeg' %}" class="card-img-top" alt="Image article">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title fw-bold">{{ article.nom }}</h5>
+            <p class="card-text text-muted">{{ article.description|truncatewords:20 }}</p>
+            <a href="#" class="btn btn-outline-primary btn-sm">Lire plus</a>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>Aucun article disponible.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4">
+    <div class="links text-center">
+                <a href="#"><i class="fab fa-facebook-f icon-fb text-center"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+              
+    </div>
+    <div class="container text-center">
+      <p>&copy; 2026 Rodrigue.blog - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
