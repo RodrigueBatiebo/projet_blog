@@ -1,0 +1,167 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>À propos - Rodrigue.blog</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark opacity-75">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center fs-4" href="{% url 'home' %}">
+        <img src="{% static 'images/rodrigue.jpg' %}" alt="Photo Rodrigue" style="height:50px; width:50px;" class="rounded-circle me-2">
+        <span>Rodrigue BATIEBO</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav fs-3">
+          <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Accueil</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'articles' %}active{% endif %}" href="{% url "articles" %}">Articles</a></li>
+          <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'propos' %}active{% endif %}" href="{% url "propos" %}">À propos</a></li>
+          
+          <li class="nav-item"><a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="contact">Me contacter</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<section class="py-5 bg-white" id="contact">
+  <div class="container">
+    
+    <div class="text-center mb-5">
+      <h2 class="fw-bold display-5">Contactez-moi</h2>
+      <p class="text-muted">Une question technique ou une demande concernant l'élevage ? Je vous répondrai avec plaisir.</p>
+      <div class="d-flex justify-content-center">
+        <hr class="border border-primary border-2 w-25 opacity-75">
+      </div>
+    </div>
+
+    <div class="row g-5">
+      {% if messages %}
+    <div class="mt-3">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-sm" role="alert">
+                {% if message.tags == 'success' %}
+                    <i class="fas fa-check-circle me-2"></i>
+                {% else %}
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                {% endif %}
+                
+                {{ message }}
+                
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+      <div class="col-lg-7">
+        <div class="card border-0 shadow-sm p-4">
+          <h4 class="fw-bold mb-4">Envoyez-moi un message</h4>
+          <form method="POST" action="">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label class="form-label small fw-bold">Nom complet</label>
+                <input type="text" name="nom" class="form-control bg-light border-0" placeholder="Votre nom" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label small fw-bold">Email</label>
+                <input type="email" name="email" class="form-control bg-light border-0" placeholder="votre@email.com" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small fw-bold">Objet</label>
+              <input type="text" name="sujet" class="form-control bg-light border-0" placeholder="Sujet de votre message" required>
+            </div>
+            <div class="mb-4">
+              <label class="form-label small fw-bold">Message</label>
+              <textarea name="message" class="form-control bg-light border-0" rows="5" placeholder="Bonjour Rodrigue..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm">
+              <i class="fas fa-paper-plane me-2"></i>Envoyer le message
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="h-100 d-flex flex-column gap-4">
+          
+          <div class="card border-0 shadow-sm p-4 bg-success text-white">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fab fa-whatsapp fa-3x me-3"></i>
+              <div>
+                <h4 class="fw-bold mb-0">WhatsApp</h4>
+                <p class="mb-0 opacity-75">Réponse rapide</p>
+              </div>
+            </div>
+            <p>Besoin d'une réponse immédiate ? Échangeons directement sur WhatsApp.</p>
+            <a href="https://wa.me/74864306" target="_blank" class="btn btn-light btn-lg fw-bold text-success w-100">
+              Discuter maintenant
+            </a>
+          </div>
+
+          <div class="card border-0 shadow-sm p-4 flex-grow-1">
+            <h4 class="fw-bold mb-4">Mes coordonnées</h4>
+            
+            <div class="d-flex mb-4">
+              <div class="bg-primary bg-opacity-10 p-3 rounded-circle text-primary me-3">
+                <i class="fas fa-map-marker-alt fa-lg"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Localisation</h6>
+                <p class="text-muted mb-0">Ouagadougou, Burkina Faso</p>
+              </div>
+            </div>
+
+            <div class="d-flex mb-4">
+              <div class="bg-primary bg-opacity-10 p-3 rounded-circle text-primary me-3">
+                <i class="fas fa-envelope fa-lg"></i>
+              </div>
+              <div>
+                <h6 class="fw-bold mb-1">Email direct</h6>
+                <p class="text-muted mb-0">rodriguebatiebo5@gmail.com</p>
+              </div>
+            </div>
+
+            <div class="mt-auto">
+                <h6 class="fw-bold mb-3">Suivez-moi</h6>
+                <div class="fs-3">
+                    <a href="#" class="text-primary me-3"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/RodrigueBatiebo" class="text-dark me-3"><i class="fab fa-github"></i></a>
+                    <a href="#" class="text-danger"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <footer class="bg-dark text-white py-4">
+    <div class="links text-center mb-3 text-white">
+      <a href="https://web.facebook.com/rodrigue.batiebo.549" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+      <a href="#" class="text-white me-3"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://github.com/RodrigueBatiebo" class="text-white me-3"><i class="fa-brands fa-github"></i></a>
+      <a href="https://www.youtube.com/channel/UC3MfBYlWMTupJLi5ZasjSvQ" class="text-white"><i class="fa-brands fa-youtube"></i></a>
+    </div>
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2026 Rodrigue.blog - Tous droits réservés</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
