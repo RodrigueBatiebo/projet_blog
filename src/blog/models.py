@@ -1,4 +1,5 @@
 from django.utils import timezone
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.contrib.auth.models import User
 # Create your models here.
@@ -18,7 +19,7 @@ class Articles(models.Model):
     auteur = models.ForeignKey(Profil,on_delete=models.CASCADE,related_name="articles")
     nom = models.CharField(max_length=100)
     description = models.TextField()
-    contenu = models.TextField()
+    contenu =  RichTextUploadingField() 
     created_at = models.DateTimeField(auto_now_add=True)
 
     choix_status = [

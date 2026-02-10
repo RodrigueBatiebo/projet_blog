@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-t1vyf(*lu@xioaq*@30_04lusjaxt!mebkis(xxfh=od1+16df
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'ckeditor', 
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +145,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'rodriguebatiebo5@gmail.com'  # Votre adresse Gmail
 EMAIL_HOST_PASSWORD = 'accp uvdb xxdm isvq'  # Ce n'est pas votre mot de passe habituel
+
+#config pour les media au niveau de la mise en forme
+CKEDITOR_UPLOAD_PATH = "uploads/"

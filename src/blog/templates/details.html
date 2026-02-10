@@ -44,7 +44,7 @@
 
                 <!-- Contenu -->
                 <h5 class="fw-semibold mt-4">Contenu</h5>
-                <p class="card-text">{{ detail.contenu|linebreaks }}</p>
+                <p class="card-text">{{ detail.contenu|safe }}</p>
 
                 <!-- Bouton retour -->
                 <a href="{% url 'articles' %}" class="btn btn-secondary mt-3">← Retour aux articles</a>

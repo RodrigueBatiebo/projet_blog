@@ -1,105 +1,175 @@
  /*-----------index.html---------------*/
+ body {
+   overflow-x: hidden;
+ }
+
  .navbar-brand img {
-      width: 40px;
-      height: 40px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-    nav{
-      height: 100px;
-    }
-    #navbarNav li {
-      height: 50px;
-    }
+   width: 40px;
+   height: 40px;
+   object-fit: cover;
+   border-radius: 50%;
+   margin-right: 10px;
+ }
+
+ nav {
+   height: 100px;
+ }
+
+ #navbarNav li {
+   height: 50px;
+ }
+
+
+ .hero {
+   position: relative;
+   text-align: center;
+   color: white;
+ }
+
+ .hero img {
+   width: 100%;
+   height: 600px;
+   object-fit: cover;
+   filter: brightness(60%);
+ }
+
+ .hero-text {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+ }
+
+ .hero-text h1 {
+   font-family: 'Montserrat', sans-serif;
+   font-size: 4rem;
+   font-weight: 700;
+   padding-bottom: 30px;
+   letter-spacing: 3px;
+   color: #fff;
+   text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+ }
+
+ .hero span {
+   color: rgba(0, 0, 0, 0.6);
+   font: bold;
+ }
+
+ .hero-text p {
+   font-family: 'Roboto', sans-serif;
+   font-size: 1.5rem;
+   font-weight: 300;
+   color: #f0f0f0;
+   text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.6);
+ }
+
+ .card {
+   transition: transform 0.3s ease, box-shadow 0.3s ease;
+ }
+
+ .card:hover {
+   transform: translateY(-10px);
+   /* effet de léger soulèvement */
+   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+   /* ombre plus marquée */
+ }
+
+ .card img {
+   transition: transform 0.3s ease;
+ }
+
+ .card:hover img {
+   transform: scale(1.05);
+   /* zoom léger sur l’image */
+ }
 
 
 
 
 
-    .hero {
-      position: relative;
-      text-align: center;
-      color: white;
-    }
-    .hero img {
-      width: 100%;
-      height: 600px;
-      object-fit: cover;
-      filter: brightness(60%);
-    }
-    .hero-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-.hero-text h1 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 4rem;
-    font-weight: 700;
-    padding-bottom: 30px;
-    letter-spacing: 3px;
-    color: #fff;
-    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
-}
-.hero span{
-  color: rgba(0,0,0,0.6);
-  font: bold;
-}
-.hero-text p {
-    font-family: 'Roboto', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: #f0f0f0;
-    text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
-}
+ footer .links {
+   display: flex;
+   justify-content: center;
+   /* centre horizontalement */
+   align-items: center;
+   /* centre verticalement */
+   gap: 15px;
+   /* espace uniforme entre les icônes */
+   margin-bottom: 15px;
+   /* espace avec le texte du footer */
+ }
 
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+ footer .links a {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 50px;
+   height: 50px;
+   border-radius: 50%;
+   border: 2px solid #fff;
+   color: #fff;
+   font-size: 1.2rem;
+   transition: all 0.3s ease;
+   text-decoration: none;
+ }
 
-.card:hover {
-  transform: translateY(-10px); /* effet de léger soulèvement */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* ombre plus marquée */
-}
-
-.card img {
-  transition: transform 0.3s ease;
-}
-
-.card:hover img {
-  transform: scale(1.05); /* zoom léger sur l’image */
-}
+ footer .links a:hover {
+   background-color: #fff;
+   color: #000;
+   transform: scale(1.1);
+ }
 
 
 
+ /* --- RESPONSIVITÉ --- */
 
+ /* Pour les tablettes et petits écrans (max 992px) */
+ @media (max-width: 992px) {
+   nav {
+     height: auto;
+     /* Permet au menu de s'étendre une fois ouvert */
+   }
 
-   footer .links {
-  display: flex;
-  justify-content: center; /* centre horizontalement */
-  align-items: center;     /* centre verticalement */
-  gap: 15px;               /* espace uniforme entre les icônes */
-  margin-bottom: 15px;     /* espace avec le texte du footer */
-}
+   .hero-text h1 {
+     font-size: 3rem;
+   }
+ }
 
-footer .links a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 2px solid #fff;
-  color: #fff;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
+ /* Pour les mobiles (max 768px) */
+ @media (max-width: 768px) {
+   .hero img {
+     height: 400px;
+    
+   }
 
-footer .links a:hover {
-  background-color: #fff;
-  color: #000;
-  transform: scale(1.1);
-}
+   .hero-text h1 {
+     font-size: 2.2rem;
+     letter-spacing: 1px;
+   }
+
+   .hero-text p {
+     font-size: 1.1rem;
+   }
+
+   
+   .col-md-4 {
+     margin-bottom: 20px;
+   }
+ }
+
+ /* Pour les très petits écrans (max 480px) */
+ @media (max-width: 480px) {
+   .hero img {
+     height: 300px;
+   }
+
+   .hero-text h1 {
+     font-size: 1.8rem;
+   }
+
+   footer .links a {
+     width: 40px;
+     height: 40px;
+     font-size: 1rem;
+   }
+ }
